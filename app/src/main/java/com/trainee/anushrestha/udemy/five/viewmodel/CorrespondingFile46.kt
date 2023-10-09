@@ -1,8 +1,10 @@
 package com.trainee.anushrestha.udemy.five.viewmodel
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -22,11 +24,11 @@ fun MainScreen(viewmodel:MyViewModel = MyViewModel()){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         GreetingMessage(
-            textField.value,
-            { words -> viewmodel.onTextChange(words)}
-        )
+            textField.value
+        ) { words -> viewmodel.onTextChange(words) }
         //logic(mainNames) { mainNames.add("aniusha")} does the same work as above
     }
+    Log.d("", "GreetingMessage: 2 $textField")
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,6 +40,8 @@ fun GreetingMessage(
     TextField(
         value = textFieldValue,
         onValueChange = textFieldUpdate)
+    Log.d("", "GreetingMessage: $textFieldValue")
+    Log.d("", "GreetingMessage:1 $textFieldUpdate")
 
     Button(onClick = {  }) {
         Text(textFieldValue)
